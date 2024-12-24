@@ -60,3 +60,8 @@ add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
 #	enable_testing()
 #endif()
 
+## Create PPM output image post build
+add_custom_command(
+  TARGET ${PROJECT_NAME} POST_BUILD
+  COMMAND "bin/${PROJECT_NAME}.exe" > "image.ppm"
+  VERBATIM)

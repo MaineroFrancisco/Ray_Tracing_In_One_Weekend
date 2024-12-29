@@ -44,8 +44,6 @@ add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
 #endif()
 
 ## Create PPM output image post build
-message("${CMAKE_CURRENT_BINARY_DIR}")
-message("${CMAKE_BUILD_TYPES}")
 add_custom_command(
 TARGET ${PROJECT_NAME} POST_BUILD
 COMMAND "${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/${PROJECT_NAME}.exe" > "image.ppm"

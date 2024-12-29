@@ -1,102 +1,33 @@
 {
-  "version": 6,
-  "configurePresets": [
-    {
-      "name": "windows-base",
-      "hidden": true,
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/${presetName}",
-      "installDir": "${sourceDir}/install/${presetName}",
-      "cacheVariables": {
-        "CMAKE_C_COMPILER": "cl.exe",
-        "CMAKE_CXX_COMPILER": "cl.exe",
-        "BUILD_TESTS": false,
-      },
-      "environment": {
-      },
-      "condition": {
-        "type": "equals",
-        "lhs": "${hostSystemName}",
-        "rhs": "Windows"
-      },
-      "architecture": {
-        "value": "x64",
-        "strategy": "external"
-      },
-      "toolset": {
-        "value": "host=x64",
-        "strategy": "external"
-      }
-    },
-    {
-      "name": "x64-debug",
-      "displayName": "x64 Debug",
-      "inherits": "windows-base",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
-      },
-      "environment": {
-      }
-    },
-    {
-      "name": "x64-relWithDebInfo",
-      "displayName": "x64 RelWithInfo",
-      "inherits": "windows-base",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "RelWithDebInfo"
-      },
-      "environment": {
-      }
-    },
-    {
-      "name": "x64-release",
-      "displayName": "x64 Release",
-      "inherits": "windows-base",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release"
-      },
-      "environment": {
-      }
-    }
-  ],
-  "buildPresets": [
-    {
-      "name": "x64-debug",
-      "displayName": "x64 Debug",
-      "configurePreset": "x64-debug"
-    },
-    {
-      "name": "x64-relWithDebInfo",
-      "displayName": "x64 RelWithInfo",
-      "configurePreset": "x64-relWithDebInfo"
-    },
-    {
-      "name": "x64-release",
-      "displayName": "x64 Release",
-      "configurePreset": "x64-release"
-    }
-  ],
-  "testPresets": [
-    {
-      "name": "x64-debug",
-      "displayName": "x64 Debug",
-      "configurePreset": "x64-debug",
-      "output": { "outputOnFailure": true },
-      "execution": { "stopOnFailure": true }
-    },
-    {
-      "name": "x64-relWithDebInfo",
-      "displayName": "x64 RelWithInfo",
-      "configurePreset": "x64-relWithDebInfo",
-      "output": { "outputOnFailure": true },
-      "execution": { "stopOnFailure": true }
-    },
-    {
-      "name": "x64-release",
-      "displayName": "x64 Release",
-      "configurePreset": "x64-release",
-      "output": { "outputOnFailure": true },
-      "execution": { "stopOnFailure": true }
-    }
-  ]
+    "version": 8,
+    "configurePresets": [
+        {
+            "name": "VS2022-amd64",
+            "displayName": "VS2022-amd64",
+            "description": "Using compilers for Visual Studio 17 2022 (x64 architecture)",
+            "generator": "Visual Studio 17 2022",
+            "toolset": "host=x64",
+            "architecture": "x64",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+                "CMAKE_C_COMPILER": "cl.exe",
+                "CMAKE_CXX_COMPILER": "cl.exe"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "x64-debug",
+            "displayName": "x64-Debug",
+            "configurePreset": "VS2022-amd64",
+            "configuration": "Debug"
+        },
+		{
+            "name": "x64-release",
+            "displayName": "x64-Release",
+            "configurePreset": "VS2022-amd64",
+            "configuration": "Release"
+        }
+    ]
 }

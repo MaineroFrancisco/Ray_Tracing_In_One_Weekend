@@ -1,17 +1,6 @@
-# CMakeList.txt : Top-level CMake project file, do global configuration
-#
+# CMakeList.txt : Top-level CMake project file
 cmake_minimum_required (VERSION 3.27)
 
-# In order for the RelWithDebInfo configuration to work correctly,
-# we need to tell cmake to prefer the Release configuration of packages
-# instead of the Debug configuration when looking for RelWithDebInfo
-# On some systems we observed that it would otherwise attempt to link
-# the binary-incompatible Debug version of libraries
-set(CMAKE_MAP_IMPORTED_CONFIG_MINSIZEREL "MinSizeRel;Release;")
-set(CMAKE_MAP_IMPORTED_CONFIG_RELWITHDEBINFO "RelWithDebInfo;Release;")
-
-# Some default settings, in case they're not set from command line.
-#
 # clangd (much better than intellisense) needs the compile_commands.json in the root folder or build folder.
 # For IDE setup, see https://clangd.llvm.org/installation#project-setup
 # If not explicitly set, we enable it:
@@ -31,12 +20,6 @@ if(SCCACHE)
 endif()
 
 if(WIN32)
-	# In Windows, dependent shared libraries have to be in the same
-	# folder as the depending executable to discover them easily
-	# Alternativly, we could update the PATH environment variable like we do for third-parties but
-	# i dont think that would scale well in some IDEs, like Visual Studio, that dont do it by default
-	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin CACHE STRING "Directory for built runtime binaries (EXE, DLL)")
-
 	# We are pretty confident that everyone would prefer to define NOMINMAX on windows
 	add_compile_definitions(NOMINMAX)
 endif()
@@ -61,7 +44,9 @@ add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
 #endif()
 
 ## Create PPM output image post build
+message("${CMAKE_CURRENT_BINARY_DIR}")
+message("${CMAKE_BUILD_TYPES}")
 add_custom_command(
-  TARGET ${PROJECT_NAME} POST_BUILD
-  COMMAND "bin/${PROJECT_NAME}.exe" > "image.ppm"
+TARGET ${PROJECT_NAME} POST_BUILD
+COMMAND "${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/${PROJECT_NAME}.exe" > "image.ppm"
   VERBATIM)

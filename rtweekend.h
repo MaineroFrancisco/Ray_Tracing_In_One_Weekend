@@ -3,8 +3,9 @@
 #include <cmath>
 #include <iostream>
 #include <limits>
-#include <numbers>
 #include <memory>
+#include <numbers>
+#include <random>
 
 
 // C++ Std Usings
@@ -19,8 +20,14 @@ const double pi = std::numbers::pi; // Only C++20 and above
 
 // Utility Functions
 
-inline double degrees_to_radians(double degrees) {
-    return degrees * pi / 180.0;
+inline double degrees_to_radians(double degrees) { return degrees * pi / 180.0; }
+
+inline double random_double() {
+	static std::uniform_real_distribution<double> distribution(0.0, 1.0);
+	std::random_device device; // Will be used to obtain a seed for the random number engine
+	static std::mt19937 generator(
+		device); // Standard mersenne_twister_engine seeded with device()
+	return distribution(generator);
 }
 
 // Common Headers

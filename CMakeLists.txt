@@ -1,5 +1,5 @@
 # CMakeList.txt : Top-level CMake project file
-cmake_minimum_required (VERSION 3.27)
+cmake_minimum_required (VERSION 3.28)
 
 # clangd (much better than intellisense) needs the compile_commands.json in the root folder or build folder.
 # For IDE setup, see https://clangd.llvm.org/installation#project-setup
@@ -30,10 +30,11 @@ set(CMAKE_CXX_STANDARD 20)
 
 project("Ray_Tracing_in_a_Weekend")
 
-set(HEADERS vec3.h color.h ray.h sphere.h hittable.h hittable_list.h)
+set(HEADERS vec3.h color.h ray.h sphere.h hittable.h hittable_list.h rtweekend.h)
 set(SOURCES main.cpp)
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
 ## TODO: Add test for experimental stuffs
 #option(BUILD_TESTS "Build Unit Tests" TRUE)

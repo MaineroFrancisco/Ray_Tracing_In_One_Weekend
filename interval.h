@@ -14,6 +14,10 @@ class interval {
 
 	bool surrounds(double x) const { return min < x && x < max; }
 
+	double clamp(double x) const { // TODO: need a function for this? Remove
+		return std::min(std::max(x, min), max);
+	}
+
 	static const interval empty, universe;
 };
 

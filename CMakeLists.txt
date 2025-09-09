@@ -30,7 +30,21 @@ set(CMAKE_CXX_STANDARD 20)
 
 project("Ray_Tracing_in_a_Weekend")
 
-set(HEADERS vec3.h color.h ray.h sphere.h hittable.h hittable_list.h rtweekend.h camera.h material.h aabb.h bvh.h)
+set(HEADERS 
+	"vec3.h"
+	"color.h"
+	"ray.h"
+	"sphere.h"
+	"hittable.h"
+	"hittable_list.h"
+	"rtweekend.h"
+	"camera.h"
+	"material.h"
+	"aabb.h"
+	"bvh.h"
+	"texture.h"
+)
+
 set(SOURCES main.cpp)
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})

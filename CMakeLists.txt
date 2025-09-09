@@ -37,6 +37,7 @@ set(HEADERS
 	"sphere.h"
 	"hittable.h"
 	"hittable_list.h"
+	"interval.h"
 	"rtweekend.h"
 	"camera.h"
 	"material.h"
@@ -45,6 +46,7 @@ set(HEADERS
 	"texture.h"
 	"perlin.h"
 	"quad.h"
+	"constant_medium.h"
 	"rtw_stb_image.h"
 )
 

@@ -96,7 +96,7 @@ void checkered_spheres() {
     cam.lookat   = point3(0,0,0);
     cam.vup      = vec3(0,1,0);
 
-    // cam.defocus_angle = 0;
+    cam.defocus_angle = 0;
 
     cam.render(world);
 }
@@ -119,7 +119,7 @@ void earth() {
     cam.lookat   = point3(0,0,0);
     cam.vup      = vec3(0,1,0);
 
-	// cam.defocus_angle = 0;
+	cam.defocus_angle = 0;
 
     cam.render(hittable_list(globe));
 }
@@ -144,7 +144,7 @@ void perlin_spheres() {
     cam.lookat   = point3(0,0,0);
     cam.vup      = vec3(0,1,0);
 
-    // cam.defocus_angle = 0;
+    cam.defocus_angle = 0;
 
     cam.render(world);
 }
@@ -179,7 +179,7 @@ void quads() {
     cam.lookat   = point3(0,0,0);
     cam.vup      = vec3(0,1,0);
 
-    // cam.defocus_angle = 0;
+    cam.defocus_angle = 0;
 
     cam.render(world);
 }
@@ -208,7 +208,7 @@ void simple_light() {
     cam.lookat   = point3(0,2,0);
     cam.vup      = vec3(0,1,0);
 
-    // cam.defocus_angle = 0;
+    cam.defocus_angle = 0;
 
     cam.render(world);
 }
@@ -251,7 +251,7 @@ void cornell_box() {
     cam.lookat   = point3(278, 278, 0);
     cam.vup      = vec3(0,1,0);
 
-    // cam.defocus_angle = 0;
+    cam.defocus_angle = 0;
 
     cam.render(world);
 }
@@ -295,7 +295,7 @@ void cornell_smoke() {
     cam.lookat   = point3(278, 278, 0);
     cam.vup      = vec3(0,1,0);
 
-    // cam.defocus_angle = 0;
+    cam.defocus_angle = 0;
 
     cam.render(world);
 }
@@ -374,13 +374,13 @@ void final_scene(int image_width, int samples_per_pixel, int max_depth) {
     cam.lookat   = point3(278, 278, 0);
     cam.vup      = vec3(0,1,0);
 
-    // cam.defocus_angle = 0;
+    cam.defocus_angle = 0;
 
     cam.render(world);
 }
 
 int main() {
-    switch (0) {
+    switch (4) {
         case 1: bouncing_spheres();  break;
         case 2: checkered_spheres(); break;
 		case 3: earth(); break;

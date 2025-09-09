@@ -30,10 +30,32 @@ set(CMAKE_CXX_STANDARD 20)
 
 project("Ray_Tracing_in_a_Weekend")
 
-set(HEADERS vec3.h color.h ray.h sphere.h hittable.h hittable_list.h rtweekend.h camera.h material.h)
+set(HEADERS 
+	"vec3.h"
+	"color.h"
+	"ray.h"
+	"sphere.h"
+	"hittable.h"
+	"hittable_list.h"
+	"interval.h"
+	"rtweekend.h"
+	"camera.h"
+	"material.h"
+	"aabb.h"
+	"bvh.h"
+	"texture.h"
+	"perlin.h"
+	"quad.h"
+	"constant_medium.h"
+	"rtw_stb_image.h"
+)
+
+# TODO: Properly link to it, add to include libraries, avoid this hardcoding
+set(STB_IMAGE "external/stb_image.h")
+
 set(SOURCES main.cpp)
 
-add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
+add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${STB_IMAGE})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
 ## TODO: Add test for experimental stuffs
@@ -47,5 +69,6 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 ## Create PPM output image post build
 add_custom_command(
 TARGET ${PROJECT_NAME} POST_BUILD
+COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/images/earthmap.jpg earthmap.jpg
 COMMAND "${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/${PROJECT_NAME}.exe" > "image.ppm"
   VERBATIM)

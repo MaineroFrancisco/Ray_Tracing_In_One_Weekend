@@ -380,7 +380,7 @@ void final_scene(int image_width, int samples_per_pixel, int max_depth) {
 }
 
 int main() {
-    switch (4) {
+    switch (0) {
         case 1: bouncing_spheres();  break;
         case 2: checkered_spheres(); break;
 		case 3: earth(); break;

@@ -54,9 +54,13 @@ set(HEADERS
 set(STB_IMAGE "external/stb_image.h")
 
 set(SOURCES main.cpp)
+set(SOURCES_MONTECARLO pi.cpp)
 
 add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${STB_IMAGE})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
+
+add_executable(Pi_Estimation ${SOURCES_MONTECARLO})
+target_compile_features(Pi_Estimation PUBLIC cxx_std_20)
 
 ## TODO: Add test for experimental stuffs
 #option(BUILD_TESTS "Build Unit Tests" TRUE)

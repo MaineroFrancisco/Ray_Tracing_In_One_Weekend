@@ -44,6 +44,7 @@ set(HEADERS
 	"bvh.h"
 	"texture.h"
 	"perlin.h"
+	"quad.h"
 	"rtw_stb_image.h"
 )
 

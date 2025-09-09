@@ -43,11 +43,15 @@ set(HEADERS
 	"aabb.h"
 	"bvh.h"
 	"texture.h"
+	"rtw_stb_image.h"
 )
+
+# TODO: Properly link to it, add to include libraries, avoid this hardcoding
+set(STB_IMAGE "external/stb_image.h")
 
 set(SOURCES main.cpp)
 
-add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES})
+add_executable(${PROJECT_NAME} ${HEADERS} ${SOURCES} ${STB_IMAGE})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
 ## TODO: Add test for experimental stuffs
@@ -61,5 +65,6 @@ target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 ## Create PPM output image post build
 add_custom_command(
 TARGET ${PROJECT_NAME} POST_BUILD
+COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/images/earthmap.jpg earthmap.jpg
 COMMAND "${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/${PROJECT_NAME}.exe" > "image.ppm"
   VERBATIM)

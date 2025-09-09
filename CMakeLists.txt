@@ -43,6 +43,7 @@ set(HEADERS
 	"aabb.h"
 	"bvh.h"
 	"texture.h"
+	"perlin.h"
 	"rtw_stb_image.h"
 )
 

@@ -10,3 +10,4 @@ TODO:
 - [ ] Play with colors: Spectral Ray Tracing.
 - [ ] Implement other primitives beside quads.
 - [ ] General rotations? too complex? Transforming rays instead of objects
+- [ ] Photon mapping (fancy)

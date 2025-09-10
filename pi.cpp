@@ -24,6 +24,8 @@ int main() {
 		}
 	}
 
+	// std::cout << "Estimated area of unit circle = " << (4.0 * inside_circle) / (sqrt_N *
+	// sqrt_N) << '\n';
 	std::cout << "Regular    Estimate of Pi = " << (4.0 * inside_circle) / (sqrt_N * sqrt_N)
 			  << '\n'
 			  << "Stratified Estimate of Pi = "

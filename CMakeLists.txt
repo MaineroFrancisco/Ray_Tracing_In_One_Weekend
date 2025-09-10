@@ -61,6 +61,5 @@ add_custom_command(
   COMMAND ${CMAKE_COMMAND} -E copy
           ${CMAKE_CURRENT_SOURCE_DIR}/images/earthmap.jpg earthmap.jpg
   COMMAND "${CMAKE_CURRENT_BINARY_DIR}/$<CONFIG>/${PROJECT_NAME}.exe" >
-          "image.ppm
-    "
+          "image.ppm"
   VERBATIM)

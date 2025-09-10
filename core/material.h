@@ -1,14 +1,13 @@
 #pragma once
+#include "extras/texture.h"
 #include "hittable.h"
-#include "texture.h"
+
 
 class material {
   public:
 	virtual ~material() = default;
 
-	virtual color emitted(double u, double v, const point3& p) const {
-        return color(0,0,0);
-    }
+	virtual color emitted(double u, double v, const point3 &p) const { return color(0, 0, 0); }
 
 	virtual bool scatter(const ray &r_in, const hit_record &rec, color &attenuation,
 						 ray &scattered) const {
@@ -18,8 +17,8 @@ class material {
 
 class lambertian : public material {
   public:
-    lambertian(const color& albedo) : tex(make_shared<solid_color>(albedo)) {}
-    lambertian(shared_ptr<texture> tex) : tex(tex) {}
+	lambertian(const color &albedo) : tex(make_shared<solid_color>(albedo)) {}
+	lambertian(shared_ptr<texture> tex) : tex(tex) {}
 
 	bool scatter(const ray &r_in, const hit_record &rec, color &attenuation,
 				 ray &scattered) const override {
@@ -98,15 +97,15 @@ class dielectric : public material {
 
 class diffuse_light : public material {
   public:
-    diffuse_light(shared_ptr<texture> tex) : tex(tex) {}
-    diffuse_light(const color& emit) : tex(make_shared<solid_color>(emit)) {}
+	diffuse_light(shared_ptr<texture> tex) : tex(tex) {}
+	diffuse_light(const color &emit) : tex(make_shared<solid_color>(emit)) {}
 
-    color emitted(double u, double v, const point3& p) const override {
-        return tex->value(u, v, p);
-    }
+	color emitted(double u, double v, const point3 &p) const override {
+		return tex->value(u, v, p);
+	}
 
   private:
-    shared_ptr<texture> tex;
+	shared_ptr<texture> tex;
 };
 
 // Isotropic scattering material for volumes.
@@ -114,16 +113,16 @@ class diffuse_light : public material {
 // Assumes convex shape for volume
 class isotropic : public material {
   public:
-    isotropic(const color& albedo) : tex(make_shared<solid_color>(albedo)) {}
-    isotropic(shared_ptr<texture> tex) : tex(tex) {}
+	isotropic(const color &albedo) : tex(make_shared<solid_color>(albedo)) {}
+	isotropic(shared_ptr<texture> tex) : tex(tex) {}
 
-    bool scatter(const ray& r_in, const hit_record& rec, color& attenuation, ray& scattered)
-    const override {
-        scattered = ray(rec.p, random_unit_vector(), r_in.time());
-        attenuation = tex->value(rec.u, rec.v, rec.p);
-        return true;
-    }
+	bool scatter(const ray &r_in, const hit_record &rec, color &attenuation,
+				 ray &scattered) const override {
+		scattered = ray(rec.p, random_unit_vector(), r_in.time());
+		attenuation = tex->value(rec.u, rec.v, rec.p);
+		return true;
+	}
 
   private:
-    shared_ptr<texture> tex;
+	shared_ptr<texture> tex;
 };

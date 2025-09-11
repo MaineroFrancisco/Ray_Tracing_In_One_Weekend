@@ -43,14 +43,22 @@ file(GLOB HEADERS_EXTRAS "extras/*.h")
 file(GLOB HEADERS_EXTERNAL "external/*.h")
 
 set(SOURCES main.cpp)
-set(SOURCES_MONTECARLO pi.cpp)
+set(SOURCES_PI pi.cpp)
+set(SOURCES_INTEGRAL monte_carlo_integration.cpp)
+set(SOURCES_HALFWAY estimate_halfway.cpp)
 
 add_executable(${PROJECT_NAME} ${HEADERS_CORE} ${HEADERS_EXTRAS}
                                ${HEADERS_EXTERNAL} ${SOURCES})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
 
-add_executable(Pi_Estimation ${SOURCES_MONTECARLO})
+add_executable(Pi_Estimation ${SOURCES_PI} ${HEADERS_CORE})
 target_compile_features(Pi_Estimation PUBLIC cxx_std_20)
+
+add_executable(Integral_Estimation ${SOURCES_INTEGRAL} ${HEADERS_CORE})
+target_compile_features(Integral_Estimation PUBLIC cxx_std_20)
+
+add_executable(Halfway_Estimation ${SOURCES_HALFWAY} ${HEADERS_CORE})
+target_compile_features(Halfway_Estimation PUBLIC cxx_std_20)
 
 # TODO: Add test for experimental stuffs
 

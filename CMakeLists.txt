@@ -43,7 +43,7 @@ file(GLOB HEADERS_EXTRAS "extras/*.h")
 file(GLOB HEADERS_EXTERNAL "external/*.h")
 
 set(SOURCES main.cpp)
-set(SOURCES_PI pi.cpp)
+set(SOURCES_PI estimate_pi.cpp)
 set(SOURCES_INTEGRAL monte_carlo_integration.cpp)
 set(SOURCES_HALFWAY estimate_halfway.cpp)
 

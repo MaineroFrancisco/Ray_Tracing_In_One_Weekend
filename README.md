@@ -12,3 +12,5 @@ This repo is intended as a practice over Ray Tracing concepts and practical impl
 - [ ] Implement other primitives beside quads.
 - [ ] General rotations? too complex? Transforming rays instead of objects
 - [ ] Photon mapping (fancy)
+- [ ] Check Metropolis-Hastings Algorithm.
+- [ ] Check 'using a carefully chosen nonuniform PDF is usually called importance sampling.'

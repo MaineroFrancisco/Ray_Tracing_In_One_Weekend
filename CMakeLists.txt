@@ -47,6 +47,7 @@ set(SOURCES_PI estimate_pi.cpp)
 set(SOURCES_INTEGRAL monte_carlo_integration.cpp)
 set(SOURCES_HALFWAY estimate_halfway.cpp)
 set(SOURCES_SPH_IMPORTANCE sphere_importance.cpp)
+set(SOURCES_SPH_SAMPLING uniform_sphere_sampling.cpp)
 
 add_executable(${PROJECT_NAME} ${HEADERS_CORE} ${HEADERS_EXTRAS}
                                ${HEADERS_EXTERNAL} ${SOURCES})
@@ -63,6 +64,9 @@ target_compile_features(Halfway_Estimation PUBLIC cxx_std_20)
 
 add_executable(Sphere_Importance ${SOURCES_SPH_IMPORTANCE} ${HEADERS_CORE})
 target_compile_features(Sphere_Importance PUBLIC cxx_std_20)
+
+add_executable(Uniform_Sphere_Sampling ${SOURCES_SPH_SAMPLING} ${HEADERS_CORE})
+target_compile_features(Uniform_Sphere_Sampling PUBLIC cxx_std_20)
 
 # TODO: Add test for experimental stuffs
 

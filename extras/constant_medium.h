@@ -1,7 +1,7 @@
 #pragma once
 
-#include "core/hittable.h"
-#include "core/material.h"
+#include "hittable.h"
+#include "material.h"
 #include "texture.h"
 
 class constant_medium : public hittable {

@@ -1,7 +1,8 @@
 #pragma once
-#include "extras/onb.h"
-#include "extras/texture.h"
 #include "hittable.h"
+#include "onb.h"
+#include "texture.h"
+
 
 class material {
   public:

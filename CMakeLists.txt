@@ -47,16 +47,16 @@ set(SOURCES main.cpp)
 add_executable(${PROJECT_NAME} ${HEADERS_CORE} ${HEADERS_EXTRAS}
                                ${HEADERS_EXTERNAL} ${SOURCES})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
+target_include_directories(${PROJECT_NAME} PRIVATE core extras external)
 
 add_subdirectory(examples)
 
 # TODO: Add test for experimental stuffs
 
 # Create PPM output image post build
-set(BUILD_IMAGE_OUTPUT
-    OFF
-    CACHE BOOL "Create image output after build")
+set(BUILD_IMAGE_OUTPUT ON)
 if(BUILD_IMAGE_OUTPUT)
+  message(STATUS "Creating image output after build")
   add_custom_command(
     TARGET ${PROJECT_NAME}
     POST_BUILD

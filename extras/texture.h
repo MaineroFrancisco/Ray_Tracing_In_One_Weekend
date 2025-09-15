@@ -1,8 +1,7 @@
 #pragma once
 
-#include "external/rtw_stb_image.h"
 #include "perlin.h"
-
+#include "rtw_stb_image.h"
 
 class texture {
   public:

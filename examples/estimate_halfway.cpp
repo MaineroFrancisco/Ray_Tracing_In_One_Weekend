@@ -1,10 +1,9 @@
-#include "core/rtweekend.h"
+#include "rtweekend.h"
 
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
 #include <vector>
-
 
 struct sample {
 	double x;

@@ -1,8 +1,7 @@
-#include "core/rtweekend.h"
+#include "rtweekend.h"
 
 #include <iomanip>
 #include <iostream>
-
 
 double f(const vec3 &d) {
 	auto cosine_squared = d.z() * d.z();

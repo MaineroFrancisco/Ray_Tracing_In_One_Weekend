@@ -12,6 +12,10 @@ class quad : public hittable {
 		D = dot(normal, Q);
 		w = n / dot(n, n);
 
+		// Only on quads because our lights are only quads, further geometries requires to
+		// implement the custom functions
+		area = n.length();
+
 		set_bounding_box();
 	}
 
@@ -67,6 +71,22 @@ class quad : public hittable {
 		return true;
 	}
 
+	double pdf_value(const point3 &origin, const vec3 &direction) const override {
+		hit_record rec;
+		if (!this->hit(ray(origin, direction), interval(0.001, infinity), rec))
+			return 0;
+
+		auto distance_squared = rec.t * rec.t * direction.length_squared();
+		auto cosine = std::fabs(dot(direction, rec.normal) / direction.length());
+
+		return distance_squared / (cosine * area);
+	}
+
+	vec3 random(const point3 &origin) const override {
+		auto p = Q + (random_double() * u) + (random_double() * v);
+		return p - origin;
+	}
+
   private:
 	point3 Q;
 	vec3 u, v;
@@ -75,6 +95,7 @@ class quad : public hittable {
 	aabb bbox;
 	vec3 normal;
 	double D;
+	double area;
 };
 
 inline shared_ptr<hittable_list> box(const point3 &a, const point3 &b,

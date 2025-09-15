@@ -228,9 +228,9 @@ void cornell_box() {
 	world.add(make_shared<quad>(point3(0, 0, 555), vec3(555, 0, 0), vec3(0, 0, -555), white));
 	world.add(make_shared<quad>(point3(555, 0, 555), vec3(-555, 0, 0), vec3(0, 555, 0), white));
 
-	// Light
-	world.add(
-		make_shared<quad>(point3(213, 554, 227), vec3(130, 0, 0), vec3(0, 0, 105), light));
+	// // Light
+	// world.add(
+	// 	make_shared<quad>(point3(213, 554, 227), vec3(130, 0, 0), vec3(0, 0, 105), light));
 
 	// Box 1
 	shared_ptr<hittable> box1 = box(point3(0, 0, 0), point3(165, 330, 165), white);
@@ -244,11 +244,16 @@ void cornell_box() {
 	box2 = make_shared<translate>(box2, vec3(130, 0, 65));
 	world.add(box2);
 
+	// Light Sources
+	auto empty_material = shared_ptr<material>();
+	quad lights(point3(343, 554, 332), vec3(-130, 0, 0), vec3(0, 0, -105), empty_material);
+
 	camera cam;
 
 	cam.aspect_ratio = 1.0;
 	cam.image_width = 600;
-	cam.samples_per_pixel = 1000;
+	cam.samples_per_pixel = 10;
+	// cam.samples_per_pixel = 1000;
 	cam.max_depth = 50;
 	cam.background = color(0, 0, 0);
 
@@ -259,7 +264,8 @@ void cornell_box() {
 
 	cam.defocus_angle = 0;
 
-	cam.render(world);
+	// cam.render(world);
+	cam.render(world, lights);
 }
 
 void cornell_smoke() {

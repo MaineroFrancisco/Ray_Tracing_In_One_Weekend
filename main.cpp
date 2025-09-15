@@ -72,7 +72,7 @@ void bouncing_spheres() {
 	cam.defocus_angle = 0.6;
 	cam.focus_dist = 10.0;
 
-	cam.render(world);
+	// cam.render(world);
 }
 
 void checkered_spheres() {
@@ -98,7 +98,7 @@ void checkered_spheres() {
 
 	cam.defocus_angle = 0;
 
-	cam.render(world);
+	// cam.render(world);
 }
 
 void earth() {
@@ -121,7 +121,7 @@ void earth() {
 
 	cam.defocus_angle = 0;
 
-	cam.render(hittable_list(globe));
+	// cam.render(hittable_list(globe));
 }
 
 void perlin_spheres() {
@@ -146,7 +146,7 @@ void perlin_spheres() {
 
 	cam.defocus_angle = 0;
 
-	cam.render(world);
+	// cam.render(world);
 }
 
 void quads() {
@@ -181,7 +181,7 @@ void quads() {
 
 	cam.defocus_angle = 0;
 
-	cam.render(world);
+	// cam.render(world);
 }
 
 void simple_light() {
@@ -210,7 +210,7 @@ void simple_light() {
 
 	cam.defocus_angle = 0;
 
-	cam.render(world);
+	// cam.render(world);
 }
 
 void cornell_box() {
@@ -228,9 +228,9 @@ void cornell_box() {
 	world.add(make_shared<quad>(point3(0, 0, 555), vec3(555, 0, 0), vec3(0, 0, -555), white));
 	world.add(make_shared<quad>(point3(555, 0, 555), vec3(-555, 0, 0), vec3(0, 555, 0), white));
 
-	// // Light
-	// world.add(
-	// 	make_shared<quad>(point3(213, 554, 227), vec3(130, 0, 0), vec3(0, 0, 105), light));
+	// Light
+	world.add(
+		make_shared<quad>(point3(213, 554, 227), vec3(130, 0, 0), vec3(0, 0, 105), light));
 
 	// Box 1
 	shared_ptr<hittable> box1 = box(point3(0, 0, 0), point3(165, 330, 165), white);
@@ -252,8 +252,7 @@ void cornell_box() {
 
 	cam.aspect_ratio = 1.0;
 	cam.image_width = 600;
-	cam.samples_per_pixel = 10;
-	// cam.samples_per_pixel = 1000;
+	cam.samples_per_pixel = 1000;
 	cam.max_depth = 50;
 	cam.background = color(0, 0, 0);
 
@@ -264,7 +263,6 @@ void cornell_box() {
 
 	cam.defocus_angle = 0;
 
-	// cam.render(world);
 	cam.render(world, lights);
 }
 
@@ -310,7 +308,7 @@ void cornell_smoke() {
 
 	cam.defocus_angle = 0;
 
-	cam.render(world);
+	// cam.render(world);
 }
 
 void final_scene(int image_width, int samples_per_pixel, int max_depth) {
@@ -386,7 +384,7 @@ void final_scene(int image_width, int samples_per_pixel, int max_depth) {
 
 	cam.defocus_angle = 0;
 
-	cam.render(world);
+	// cam.render(world);
 }
 
 int main() {

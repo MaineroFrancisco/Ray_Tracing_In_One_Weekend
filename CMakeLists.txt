@@ -33,7 +33,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 set(CMAKE_CXX_STANDARD 20)
 
-project("Ray_Tracing_in_a_Weekend")
+project("Ray_Tracing_in_a_Weekend" LANGUAGES CXX CUDA)
 
 file(GLOB HEADERS_CORE "core/*.h")
 file(GLOB HEADERS_EXTRAS "extras/*.h")
@@ -42,11 +42,17 @@ file(GLOB HEADERS_EXTRAS "extras/*.h")
 # hardcoding
 file(GLOB HEADERS_EXTERNAL "external/*.h")
 
-set(SOURCES main.cpp)
+set(SOURCES main.cu)
 
 add_executable(${PROJECT_NAME} ${HEADERS_CORE} ${HEADERS_EXTRAS}
                                ${HEADERS_EXTERNAL} ${SOURCES})
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
+
+# We need to explicitly state that we need all CUDA files in the to be built
+# with -dc as the member functions could be called by other libraries and
+# executables
+set_target_properties(${PROJECT_NAME} PROPERTIES CUDA_SEPARABLE_COMPILATION ON)
+
 target_include_directories(${PROJECT_NAME} PRIVATE core extras external)
 
 add_subdirectory(examples)
